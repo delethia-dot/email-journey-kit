@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You Got the Lead. Now What? | Email Journey Starter Kit — Ink &amp; Prosper</title>
+<meta name="description" content="A practical worksheet to capture the right information, segment with purpose, score engagement, build nurture paths, and use AI without guessing.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="You Got the Lead. Now What?">
+<meta property="og:description" content="The Email Journey Starter Kit — a 7-page worksheet for turning captured leads into a path to customer.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* Sampled directly from the Mapping the Inbox Journey deck */
+  --night:#06041A;
+  --deep:#0C0930;
+  --indigo:#171142;
+  --violet:#2C1B63;
+  --gold:#F5C542;
+  --amber:#E8A33D;
+  --cream:#FBEBD7;
+  --teal:#46D9D1;
+  --magenta:#E05FA8;
+
+  --ink:#140A2E;
+  --text:#D2CCEC;
+  --muted:#918AB9;
+  --line:rgba(146,132,214,.22);
+
+  --shell:min(1160px,92vw);
+  --r:18px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--night);
+  color:var(--text);
+  font-family:"Outfit",system-ui,-apple-system,sans-serif;
+  font-weight:300;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ---------- ambient night sky ---------- */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 12% -6%, rgba(69,58,160,.55), transparent 62%),
+    radial-gradient(760px 480px at 88% 4%, rgba(112,44,132,.42), transparent 60%),
+    radial-gradient(1100px 700px at 50% 108%, rgba(24,20,84,.85), transparent 66%),
+    linear-gradient(180deg,#0A0726 0%,#06041A 46%,#080528 100%);
+}
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 12%, #fff, transparent),
+    radial-gradient(1.1px 1.1px at 72% 8%, #E7DCFF, transparent),
+    radial-gradient(1.5px 1.5px at 41% 26%, #fff, transparent),
+    radial-gradient(1px 1px at 88% 21%, #CFE9FF, transparent),
+    radial-gradient(1.2px 1.2px at 9% 34%, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 61% 38%, #FFF3D0, transparent),
+    radial-gradient(1px 1px at 33% 6%, #fff, transparent),
+    radial-gradient(1.4px 1.4px at 95% 44%, #fff, transparent);
+  animation:twinkle 7s ease-in-out infinite alternate;
+}
+@keyframes twinkle{from{opacity:.32}to{opacity:.62}}
+main,header,footer{position:relative;z-index:1}
+
+.shell{width:var(--shell);margin-inline:auto}
+
+/* ---------- bunting ---------- */
+.bunting{display:block;width:100%;height:34px}
+
+/* ---------- topbar ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 0 4px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:.04em;
+  font-size:14px;color:var(--cream);text-transform:uppercase}
+.brand .bulb{width:10px;height:10px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 12px var(--gold),0 0 26px rgba(245,197,66,.55)}
+.topbar .tag{font-size:12.5px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:start;
+  padding:44px 0 62px}
+.eyebrow{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--teal);margin:0 0 22px}
+.eyebrow span{color:var(--muted)}
+
+/* signature: bulb-framed marquee sign */
+.marquee{position:relative;padding:15px;border-radius:22px;
+  background:linear-gradient(180deg,#3A2A12,#231705);
+  border:1px solid rgba(245,197,66,.5);
+  box-shadow:0 0 0 1px rgba(0,0,0,.5) inset,0 26px 60px -22px rgba(0,0,0,.9),
+             0 0 90px -30px rgba(245,197,66,.5);
+}
+.bulbs{position:absolute;inset:0;border-radius:22px;pointer-events:none;
+  background-image:
+    radial-gradient(circle, var(--gold) 2.4px, transparent 3.1px),
+    radial-gradient(circle, var(--gold) 2.4px, transparent 3.1px),
+    radial-gradient(circle, var(--gold) 2.4px, transparent 3.1px),
+    radial-gradient(circle, var(--gold) 2.4px, transparent 3.1px);
+  background-position:8px 7.5px, 8px calc(100% - 7.5px), 7.5px 8px, calc(100% - 7.5px) 8px;
+  background-size:23px 15px, 23px 15px, 15px 23px, 15px 23px;
+  background-repeat:repeat-x,repeat-x,repeat-y,repeat-y;
+  filter:drop-shadow(0 0 5px rgba(245,197,66,.9));
+  animation:chase 2.4s steps(2,end) infinite;
+}
+@keyframes chase{0%,100%{opacity:1}50%{opacity:.42}}
+.plate{background:linear-gradient(178deg,var(--cream),#F2D9BC);border-radius:12px;
+  padding:26px 30px 28px;text-align:center}
+h1{font-family:"Alfa Slab One",serif;font-weight:400;color:var(--ink);
+  font-size:clamp(28px,4.1vw,50px);line-height:1.03;letter-spacing:-.005em;margin:0;
+  text-transform:uppercase}
+
+.kicker{font-size:clamp(21px,2.3vw,28px);font-weight:600;color:#fff;margin:26px 0 0;
+  letter-spacing:-.01em}
+.kicker em{font-style:normal;color:var(--teal)}
+.lede{margin:14px 0 0;max-width:52ch;color:var(--text)}
+
+/* mini journey map */
+.map{margin:34px 0 0;display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.stop{flex:1;min-width:132px;padding:14px 16px 15px;background:rgba(23,17,66,.55);
+  border:1px solid var(--line);border-right:none}
+.stop:first-child{border-radius:12px 0 0 12px}
+.stop:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}
+.stop b{display:block;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.16em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+.stop span{font-size:14.5px;color:#EAE5FF;font-weight:400;line-height:1.4}
+
+/* ---------- ticket ---------- */
+.ticket{position:relative;background:linear-gradient(165deg,#1C1450 0%,#140E3C 58%,#1A1046 100%);
+  border-radius:var(--r);padding:0;
+  box-shadow:0 34px 70px -26px rgba(0,0,0,.95),0 0 0 1px rgba(146,132,214,.24) inset,
+             0 0 120px -50px rgba(70,217,209,.6);
+  -webkit-mask:
+     radial-gradient(circle 13px at 0 var(--notch,238px), transparent 12.5px, #000 13px),
+     radial-gradient(circle 13px at 100% var(--notch,238px), transparent 12.5px, #000 13px);
+  -webkit-mask-composite:source-in;
+  mask:
+     radial-gradient(circle 13px at 0 var(--notch,238px), transparent 12.5px, #000 13px),
+     radial-gradient(circle 13px at 100% var(--notch,238px), transparent 12.5px, #000 13px);
+  mask-composite:intersect;
+}
+.ticket-head{padding:22px 28px 18px;border-bottom:1px solid rgba(146,132,214,.2)}
+.admit{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold)}
+.admit .serial{color:var(--muted);letter-spacing:.1em}
+.ticket-head h2{font-size:21px;font-weight:600;color:#fff;margin:12px 0 4px;letter-spacing:-.01em}
+.ticket-head p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.5}
+
+form{padding:22px 28px 26px;display:grid;gap:15px}
+label{display:block;font-size:12.5px;font-weight:500;letter-spacing:.09em;
+  text-transform:uppercase;color:#B9B1DE;margin-bottom:7px}
+input,select{width:100%;padding:13px 15px;border-radius:11px;
+  background:rgba(6,4,26,.62);border:1px solid rgba(146,132,214,.3);
+  color:#fff;font-family:inherit;font-size:16px;font-weight:300;transition:border-color .18s,box-shadow .18s}
+select{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--teal) 50%),
+                   linear-gradient(135deg,var(--teal) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 21px, calc(100% - 14px) 21px;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+input::placeholder{color:#6E679A}
+input:focus,select:focus{outline:none;border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(70,217,209,.2)}
+input:focus-visible,select:focus-visible,a:focus-visible,button:focus-visible{
+  outline:2px solid var(--teal);outline-offset:3px}
+.hint{margin:7px 0 0;font-size:13px;color:var(--muted);line-height:1.5}
+.hint b{color:var(--teal);font-weight:500}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+.btn{width:100%;padding:16px 20px;border:none;border-radius:12px;cursor:pointer;
+  font-family:"Outfit",sans-serif;font-size:16.5px;font-weight:700;letter-spacing:.01em;
+  color:#2A1B02;background:linear-gradient(180deg,#FFD75E,var(--amber));
+  box-shadow:0 10px 26px -10px rgba(245,197,66,.75),0 1px 0 rgba(255,255,255,.4) inset;
+  transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px -10px rgba(245,197,66,.85)}
+.btn:active{transform:translateY(0)}
+.btn[disabled]{filter:grayscale(.45) brightness(.85);cursor:wait;transform:none}
+
+.consent{font-size:12.5px;color:#7E77A8;line-height:1.55;margin:0}
+.consent a{color:#A79EDA}
+.err{display:none;margin:0;padding:11px 14px;border-radius:10px;font-size:14px;
+  background:rgba(224,95,168,.13);border:1px solid rgba(224,95,168,.42);color:#FFC4E4}
+.err.on{display:block}
+
+/* ticket success state */
+.stub{display:none;padding:30px 28px 32px;text-align:center}
+.stub.on{display:block;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.stub .mark{width:52px;height:52px;margin:0 auto 16px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(70,217,209,.14);
+  border:1px solid rgba(70,217,209,.5);box-shadow:0 0 34px -8px var(--teal)}
+.stub h2{font-size:22px;color:#fff;margin:0 0 8px;font-weight:600}
+.stub p{margin:0 0 20px;font-size:15px;color:var(--muted)}
+.stub .btn{max-width:320px;margin-inline:auto;text-decoration:none;display:block;text-align:center}
+.stub small{display:block;margin-top:15px;font-size:12.5px;color:#7E77A8}
+
+/* ---------- track divider ---------- */
+.track{display:block;width:100%;height:56px;margin:0}
+
+/* ---------- sections ---------- */
+section{padding:74px 0}
+.sec-head{max-width:62ch;margin-bottom:40px}
+.sec-head .eyebrow{margin-bottom:14px}
+h2.title{font-size:clamp(26px,3.2vw,38px);font-weight:700;color:#fff;margin:0 0 12px;
+  letter-spacing:-.02em;line-height:1.15}
+.sec-head p{margin:0;color:var(--text)}
+
+.stops{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.card{background:linear-gradient(170deg,rgba(23,17,66,.9),rgba(10,7,34,.9));
+  padding:28px 26px 30px;transition:background .25s ease}
+.card:hover{background:linear-gradient(170deg,rgba(44,27,99,.92),rgba(14,9,44,.92))}
+.card .no{font-family:"Space Mono",monospace;font-size:12px;color:var(--gold);
+  letter-spacing:.14em;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.card .no i{font-style:normal;color:var(--magenta);font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase}
+.card h3{font-size:19px;font-weight:600;color:#fff;margin:0 0 9px;letter-spacing:-.01em}
+.card p{margin:0;font-size:15px;color:#ADA5D4;line-height:1.6}
+
+/* pull quote */
+.quote{border-left:3px solid var(--gold);padding:6px 0 6px 26px;margin:0;
+  font-size:clamp(20px,2.5vw,27px);font-weight:500;color:#fff;line-height:1.4;
+  letter-spacing:-.015em;max-width:26ch}
+.quote-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center;
+  padding:62px 0}
+.quote-wrap .side p{margin:0 0 16px;color:var(--text)}
+.quote-wrap .side p:last-child{margin-bottom:0}
+
+/* rails */
+.rails{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;
+  margin-top:34px}
+.rail{padding:20px 20px 22px;border-radius:14px;background:rgba(12,9,48,.62);
+  border:1px solid var(--line)}
+.rail b{display:block;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.rail span{font-size:14.5px;color:#ADA5D4}
+
+/* author */
+.author{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start;
+  padding:34px 32px;border-radius:var(--r);border:1px solid var(--line);
+  background:linear-gradient(150deg,rgba(44,27,99,.5),rgba(10,7,34,.72))}
+.author .badge{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;
+  font-family:"Alfa Slab One",serif;font-size:26px;color:var(--ink);
+  background:linear-gradient(180deg,var(--cream),#EFCFA8);
+  box-shadow:0 0 0 5px rgba(245,197,66,.2),0 12px 30px -12px #000}
+.author h3{margin:0 0 3px;font-size:19px;color:#fff;font-weight:600}
+.author .role{margin:0 0 14px;font-family:"Space Mono",monospace;font-size:11.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
+.author p{margin:0 0 13px;font-size:15px;color:#ADA5D4;line-height:1.65;max-width:66ch}
+.author p:last-child{margin-bottom:0}
+.author .tm{color:var(--teal);font-weight:500}
+
+/* final CTA */
+.final{text-align:center;padding:78px 0 84px}
+.final .marquee{max-width:760px;margin:0 auto 30px}
+.final h2{font-family:"Alfa Slab One",serif;font-weight:400;color:var(--ink);
+  font-size:clamp(23px,3.4vw,38px);line-height:1.08;margin:0;text-transform:uppercase}
+.final p{max-width:56ch;margin:0 auto 30px;color:var(--text)}
+.jump{display:inline-block;padding:16px 40px;border-radius:12px;text-decoration:none;
+  font-weight:700;font-size:16.5px;color:#2A1B02;
+  background:linear-gradient(180deg,#FFD75E,var(--amber));
+  box-shadow:0 12px 30px -12px rgba(245,197,66,.8),0 1px 0 rgba(255,255,255,.4) inset;
+  transition:transform .16s ease,box-shadow .16s ease}
+.jump:hover{transform:translateY(-2px);box-shadow:0 18px 38px -12px rgba(245,197,66,.9)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 0 46px;margin-top:10px}
+.foot{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px}
+.foot a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .16s}
+.foot a:hover{color:var(--teal)}
+.foot .fine{font-size:13px;color:#645D8C}
+
+@media(max-width:940px){
+  .hero{grid-template-columns:1fr;gap:38px;padding-top:30px}
+  .quote-wrap{grid-template-columns:1fr;gap:28px}
+  .quote{max-width:none}
+}
+@media(max-width:560px){
+  body{font-size:16px}
+  .stop{min-width:100%;border-right:1px solid var(--line);border-bottom:none;border-radius:0}
+  .stop:first-child{border-radius:12px 12px 0 0}
+  .stop:last-child{border-radius:0 0 12px 12px}
+  .author{grid-template-columns:1fr;gap:18px}
+  .ticket-head,form,.stub{padding-inline:20px}
+  section{padding:56px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+<div class="stars"></div>
+
+<header>
+  <!-- gold pennant bunting, matching the kit cover -->
+  <svg class="bunting" viewBox="0 0 1200 34" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <pattern id="flags" x="0" y="0" width="50" height="34" patternUnits="userSpaceOnUse">
+        <rect x="2" y="0" width="1.6" height="26" fill="#F5C542" opacity=".85"/>
+        <path d="M3.6 1 H18 L11 8.5 L18 16 H3.6 Z" fill="#F5C542"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="34" fill="url(#flags)"/>
+  </svg>
+
+  <div class="shell topbar">
+    <div class="brand"><span class="bulb"></span> Ink &amp; Prosper</div>
+    <div class="tag">Free worksheet · 7 pages</div>
+  </div>
+</header>
+
+<main>
+  <div class="shell hero">
+    <div>
+      <p class="eyebrow">The Email Journey <span>/ Starter Kit</span></p>
+
+      <div class="marquee">
+        <div class="bulbs" aria-hidden="true"></div>
+        <div class="plate"><h1>You Got the Lead.<br>Now What?</h1></div>
+      </div>
+
+      <p class="kicker">Most lists collect names. Yours can collect <em>signal</em>.</p>
+      <p class="lede">This worksheet walks you through the part that usually gets skipped: deciding what to capture at the gate, what behavior actually means something, and what the next message should be once someone shows you where their interest lives.</p>
+
+      <div class="map">
+        <div class="stop"><b>Capture</b><span>What should you know at the gate?</span></div>
+        <div class="stop"><b>Observe</b><span>What signals show real interest?</span></div>
+        <div class="stop"><b>Respond</b><span>What should happen next?</span></div>
+      </div>
+    </div>
+
+    <!-- ticket -->
+    <div class="ticket" id="get">
+      <div class="ticket-head">
+        <div class="admit"><span>Admit One</span><span class="serial" id="serial">No. 000000</span></div>
+        <h2>Send me the Starter Kit</h2>
+        <p>The full seven-page worksheet, downloadable right here.</p>
+      </div>
+
+      <form id="kitForm" name="starter-kit" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
+        <input type="hidden" name="form-name" value="starter-kit">
+        <div>
+          <label for="firstName">First name</label>
+          <input id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Jordan">
+        </div>
+
+        <div>
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com">
+        </div>
+
+        <div>
+          <label for="segment">What are you trying to fix first?</label>
+          <select id="segment" name="segment">
+            <option value="" selected disabled>Choose one</option>
+            <option value="Capture">Getting leads onto my list in the first place</option>
+            <option value="Nurture">Knowing what to send after the welcome email</option>
+            <option value="Conversion">Turning quiet interest into booked calls</option>
+          </select>
+          <p class="hint"><b>Notice what just happened.</b> That is the one segmentation question the kit teaches you to add. It is the difference between a list of names and a list you can act on.</p>
+        </div>
+
+        <input class="hp" type="text" name="company" id="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <button class="btn" type="submit" id="submitBtn">Get the Starter Kit</button>
+        <p class="consent">By submitting your email address, you're signing up to my mailing list.</p>
+      </form>
+
+      <div class="stub" id="stub">
+        <div class="mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#46D9D1" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h2 id="stubName">You're on the ride</h2>
+        <p>The Email Journey Starter Kit is ready. Grab your copy below.</p>
+        <a class="btn" id="dl" href="#" target="_blank" rel="noopener">Download the PDF</a>
+        <small>The download opens in a new tab. Save it somewhere you'll find it again.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- neon track -->
+  <svg class="track" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true">
+    <path id="rail" d="M0 40 C 180 40, 240 12, 420 12 S 700 46, 880 30 S 1080 14, 1200 20"
+          fill="none" stroke="#46D9D1" stroke-width="2" opacity=".55"
+          style="filter:drop-shadow(0 0 6px #46D9D1)"/>
+    <path d="M0 40 C 180 40, 240 12, 420 12 S 700 46, 880 30 S 1080 14, 1200 20"
+          fill="none" stroke="#E05FA8" stroke-width="1.4" stroke-dasharray="9 15" opacity=".85"
+          style="filter:drop-shadow(0 0 5px #E05FA8)">
+      <animate attributeName="stroke-dashoffset" from="240" to="0" dur="9s" repeatCount="indefinite"/>
+    </path>
+  </svg>
+
+  <!-- what's inside -->
+  <section class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">What's inside</p>
+      <h2 class="title">Six worked sections, not six pages of theory</h2>
+      <p>Every section has blanks to fill in with your own business. You finish with a lead form question, a scoring model, and two nurture paths you can build this week.</p>
+    </div>
+
+    <div class="stops">
+      <div class="card">
+        <div class="no">01 <i>Park Map</i></div>
+        <h3>Map the lead-to-next-step journey</h3>
+        <p>The eight-stage backbone from capture through customer, with prompts for your sources, your first message, and your conversion goal.</p>
+      </div>
+      <div class="card">
+        <div class="no">02 <i>At the Gate</i></div>
+        <h3>Smart intake builder</h3>
+        <p>What to ask upfront versus what to learn from behavior later, and a table for turning each answer into a field, tag, or lifecycle stage.</p>
+      </div>
+      <div class="card">
+        <div class="no">03 <i>Intent Meter</i></div>
+        <h3>Engagement scoring starter</h3>
+        <p>Starter point values for nine behaviors, three score bands, and the reason an open is a much weaker signal than a click or a booking.</p>
+      </div>
+      <div class="card">
+        <div class="no">04 <i>Choose the Ride</i></div>
+        <h3>Build three nurture paths</h3>
+        <p>Entry conditions and next messages for educate, topic nurture, and high intent, plus a choice-based email that lets the lead route themselves.</p>
+      </div>
+      <div class="card">
+        <div class="no">05 <i>Ride Operator</i></div>
+        <h3>The AI prompt pack</h3>
+        <p>Five prompts written to keep the model grounded in data you actually hold, so it drafts the email without inventing facts about your customer.</p>
+      </div>
+      <div class="card">
+        <div class="no">06 <i>Leave With a Plan</i></div>
+        <h3>Your first three actions</h3>
+        <p>One question to add, three signals to track, two paths to build, and a short list of things worth deliberately not doing yet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- quote -->
+  <div class="shell quote-wrap">
+    <blockquote class="quote">The goal is not to send more email. The goal is to create a path from interest to customer.</blockquote>
+    <div class="side">
+      <p>Batch-and-blast treats every subscriber as the same person on the same day. It is easy to run and it teaches you nothing, because the response tells you as much about your timing as it does about their intent.</p>
+      <p>A journey works differently. You capture something useful at the gate, watch what people do with what you send, and let that behavior decide the next message. The kit gives you the structure for doing that on whatever platform you already run.</p>
+    </div>
+  </div>
+
+  <!-- safety rails -->
+  <section class="shell" style="padding-top:16px">
+    <div class="sec-head">
+      <p class="eyebrow">The safety rails</p>
+      <h2 class="title">Automation runs the ride. You still design it.</h2>
+      <p>Four constraints run through the whole worksheet, because a nurture system that cannot be explained is a nurture system that will eventually embarrass you.</p>
+    </div>
+    <div class="rails">
+      <div class="rail"><b>First-party data</b><span>Capture information intentionally, from people who chose to give it.</span></div>
+      <div class="rail"><b>Consent</b><span>Permission and opt-outs are respected at every stage of the path.</span></div>
+      <div class="rail"><b>Good data</b><span>Personalize only from information you trust and can trace.</span></div>
+      <div class="rail"><b>Human oversight</b><span>AI drafts and suggests. People review and decide.</span></div>
+    </div>
+  </section>
+
+  <!-- author -->
+  <section class="shell" style="padding-top:16px">
+    <div class="author">
+      <div class="badge">DJ</div>
+      <div>
+        <h3>Delethia Johnson, CIA</h3>
+        <p class="role">Certified AI Consultant · Founder, Ink &amp; Prosper</p>
+        <p>Delethia brings 25+ years across internal audit, operational risk, and enterprise technology in financial services to the way she builds marketing and automation systems: audit the process first, so you can see the inefficiency and the risk at the same time.</p>
+        <p>She partners with service businesses and financial services firms to design AI and automation they can explain, evidence, and control. <span class="tm">You Own the AI, Don't Let AI Own You™</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- final CTA -->
+  <div class="shell final">
+    <div class="marquee">
+      <div class="bulbs" aria-hidden="true"></div>
+      <div class="plate"><h2>The lead is not the destination</h2></div>
+    </div>
+    <p>Capture the signal, learn from the behavior, choose the next best step. Start with the worksheet.</p>
+    <a class="jump" href="#get">Get the Starter Kit</a>
+  </div>
+</main>
+
+<footer>
+  <div class="shell foot">
+    <div class="fine">© <span id="yr">2026</span> Ink &amp; Prosper LLC · Charlotte, NC</div>
+    <nav>
+      <a href="https://www.linkedin.com/in/delethia-johnson-cia-92571811" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.youtube.com/@theautomationinsider" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/delethiaj" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://rebrand.ly/IP-Delethia-Calendar" target="_blank" rel="noopener">Book a call</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   No setup required.
+
+   Put Email_Journey_Starter_Kit.pdf in the same folder as this
+   file and the download works the moment Netlify deploys.
+
+   Email addresses land in Netlify > your site > Forms >
+   "starter-kit". Export to GoHighLevel whenever you're ready.
+   ============================================================ */
+
+const PDF_URL = "./Email_Journey_Starter_Kit.pdf";
+
+const form = document.getElementById('kitForm');
+const stub = document.getElementById('stub');
+const btn  = document.getElementById('submitBtn');
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('serial').textContent =
+  'No. ' + String(Math.floor(Math.random() * 900000) + 100000);
+
+// keep the ticket notch aligned with the divider under the header block
+function placeNotch(){
+  const t = document.querySelector('.ticket');
+  const h = document.querySelector('.ticket-head');
+  if (t && h) t.style.setProperty('--notch', h.offsetHeight + 'px');
+}
+window.addEventListener('load', placeNotch);
+window.addEventListener('resize', placeNotch);
+placeNotch();
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // honeypot - bots fill hidden fields
+  if (document.getElementById('company').value) return;
+
+  const firstName = document.getElementById('firstName').value.trim();
+  const email     = document.getElementById('email').value.trim();
+  const segment   = document.getElementById('segment').value;
+
+  btn.disabled = true;
+  btn.textContent = 'Opening your kit...';
+
+  // Netlify captures this automatically once the site is deployed.
+  if (email) {
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'starter-kit',
+          firstName: firstName,
+          email: email,
+          segment: segment
+        }).toString()
+      });
+    } catch (_) {
+      // The download still opens either way.
+    }
+  }
+
+  document.getElementById('dl').href = PDF_URL;
+  if (firstName) {
+    document.getElementById('stubName').textContent = firstName + ", you're on the ride";
+  }
+  form.style.display = 'none';
+  stub.classList.add('on');
+  placeNotch();
+});
+</script>
+</body>
+</html>
